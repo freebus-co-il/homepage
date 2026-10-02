@@ -45,6 +45,16 @@ Every string lives in `lib/i18n.ts`. The Hebrew dictionary is typed against the 
 
 Screenshots come from the iOS Simulator (iPhone 17 Pro, 1206×2622), scaled to 640px wide and saved as WebP. To replace one, overwrite both language versions under `public/assets/screens/`, keeping the file names.
 
+### Open Graph images
+
+`public/assets/og-he.jpg` and `og-en.jpg` (1200×630) are the link previews, one per language. They're generated from the hero's headline and screenshots. After changing either, regenerate them:
+
+```bash
+python3 scripts/og-image.py
+```
+
+This needs Python 3 with Pillow and Google Chrome. Set `CHROME` if Chrome isn't in the default macOS location.
+
 ## Contributing
 
 Issues and pull requests are welcome. For anything about the app itself (features, bugs, data), please use the [main FreeBus repository](https://github.com/freebus-co-il/freebus), which has the [contributing guide](https://github.com/freebus-co-il/freebus/blob/main/.github/CONTRIBUTING.md) and [code of conduct](https://github.com/freebus-co-il/freebus/blob/main/.github/CODE_OF_CONDUCT.md).

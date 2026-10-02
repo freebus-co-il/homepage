@@ -28,10 +28,11 @@ export function metadataFor(lang: Lang): Metadata {
       title: t.title,
       description: t.ogDescription,
       url: paths[lang],
-      images: "/assets/og.jpg",
+      // 1200×630, one per language (public/assets/og-{he,en}.jpg).
+      images: { url: `/assets/og-${lang}.jpg`, width: 1200, height: 630, alt: `${t.h1a} ${t.h1b}` },
       locale: lang === "he" ? "he_IL" : "en_US",
     },
-    twitter: { card: "summary_large_image" },
+    twitter: { card: "summary_large_image", images: `/assets/og-${lang}.jpg` },
     icons: {
       icon: { url: "/assets/favicon.svg", type: "image/svg+xml" },
       apple: "/assets/apple-touch-icon.png",
