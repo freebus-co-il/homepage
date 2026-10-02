@@ -1,14 +1,24 @@
+import type { ReactNode } from "react";
 import { Glyph } from "@/components/icons";
 import { HeroPhones } from "@/components/hero-phones";
 import { IPhone } from "@/components/iphone";
 import { LangSwitch } from "@/components/lang-switch";
 import {
+  IconBrandApple,
   IconBrandGithub,
+  IconBrandGooglePlay,
   IconCheck,
 } from "@tabler/icons-react";
 import { dicts, paths, type Dict, type Lang } from "@/lib/i18n";
 
 const repo = "https://github.com/freebus-co-il/freebus";
+
+// Store listings. Until an app is published its link is null and the chip
+// shows as "coming soon"; set the URL and it becomes a link.
+const stores: { name: string; icon: ReactNode; url: string | null }[] = [
+  { name: "App Store", icon: <IconBrandApple className="icon" />, url: null },
+  { name: "Google Play", icon: <IconBrandGooglePlay className="icon" />, url: null },
+];
 
 // Operators, as named in the national timetable feed.
 const operators: { he: string; en: string }[] = [
@@ -92,6 +102,22 @@ export function LandingPage({ lang }: { lang: Lang }) {
                 <IconBrandGithub className="icon gh" />
                 <span>{t.ctaGithub}</span>
               </a>
+              <div className="stores">
+                {stores.some((s) => !s.url) && <span className="stores-label">{t.storesSoon}</span>}
+                {stores.map((store) =>
+                  store.url ? (
+                    <a key={store.name} className="store" href={store.url}>
+                      {store.icon}
+                      <span>{store.name}</span>
+                    </a>
+                  ) : (
+                    <span key={store.name} className="store" aria-disabled="true">
+                      {store.icon}
+                      <span>{store.name}</span>
+                    </span>
+                  ),
+                )}
+              </div>
               <p className="hero-note">{t.noAccount}</p>
             </div>
           </div>

@@ -93,6 +93,18 @@ svg { display: block; }
 .hero-sub { margin: 24px auto 0; max-width: 640px; font-size: 18px; color: var(--fg-2); }
 .hero-actions { margin-top: 36px; display: flex; flex-direction: column; align-items: center; gap: 16px; }
 .hero-note { font-size: 13px; color: var(--fg-3); }
+/* Store chips: outlined like the ghost button, muted until there's a link. */
+.stores { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px 10px; }
+.stores-label { font: 13px var(--mono); color: var(--fg-3); }
+.store {
+  display: inline-flex; align-items: center; gap: 8px; height: 36px; padding: 0 14px;
+  border: 1px solid var(--line); border-radius: 8px;
+  font-size: 13px; font-weight: 500; color: var(--fg-2);
+}
+.store .icon { font-size: 16px; }
+a.store:hover { border-color: var(--line-2); color: var(--fg); }
+.store[aria-disabled="true"] { color: var(--fg-3); cursor: default; }
+[dir="rtl"] .store { flex-direction: row-reverse; }
 
 /* Three phones fanned out under the hero, shown whole. The box is as tall as
    the middle phone (300px wide → 624px) plus a little for the tilted sides. */
