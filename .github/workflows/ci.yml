@@ -1,9 +1,17 @@
 name: CI
 
+# The whole repo is the site, so only the root-level docs are skipped. `*`
+# does not cross `/`, so this never ignores content/ or app/.
 on:
   pull_request:
+    paths-ignore:
+      - "*.md"
+      - LICENSE
   push:
     branches: [main]
+    paths-ignore:
+      - "*.md"
+      - LICENSE
 
 permissions:
   contents: read
