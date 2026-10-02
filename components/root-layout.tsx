@@ -2,7 +2,7 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import type { Metadata, Viewport } from "next";
 import { Cascadia_Mono, Google_Sans, Google_Sans_Code } from "next/font/google";
 import type { ReactNode } from "react";
-import { dicts, paths, type Lang } from "@/lib/i18n";
+import { dicts, pathFor, type Lang, type Slug } from "@/lib/i18n";
 import "@/app/globals.css";
 
 const googleSans = Google_Sans({ subsets: ["latin", "hebrew"], variable: "--font-google-sans" });
@@ -19,20 +19,25 @@ export const viewport: Viewport = {
   colorScheme: "dark",
 };
 
-export function metadataFor(lang: Lang): Metadata {
+// The landing page's metadata, or with `page` a sub-page's: its own title,
+// description and canonical URL, sharing the landing page's images.
+export function metadataFor(lang: Lang, page?: { slug: Slug; title: string; description: string }): Metadata {
   const t = dicts[lang];
+  const title = page ? `${page.title} · ${t.title}` : t.title;
+  const description = page ? page.description : t.description;
+  const url = pathFor(lang, page?.slug);
   return {
     metadataBase: new URL("https://freebus.co.il"),
-    title: t.title,
-    description: t.description,
+    title,
+    description,
     alternates: {
-      canonical: paths[lang],
-      languages: { he: paths.he, en: paths.en, "x-default": paths.he },
+      canonical: url,
+      languages: { he: pathFor("he", page?.slug), en: pathFor("en", page?.slug), "x-default": pathFor("he", page?.slug) },
     },
     openGraph: {
-      title: t.title,
-      description: t.ogDescription,
-      url: paths[lang],
+      title,
+      description: page ? page.description : t.ogDescription,
+      url,
       // 1200×630, one per language (public/assets/og-{he,en}.jpg).
       images: { url: `/assets/og-${lang}.jpg`, width: 1200, height: 630, alt: `${t.h1a} ${t.h1b}` },
       locale: lang === "he" ? "he_IL" : "en_US",
@@ -46,11 +51,11 @@ export function metadataFor(lang: Lang): Metadata {
 }
 
 // Runs before first paint, so a visitor who chose English never sees a flash
-// of Hebrew. Only "/" auto-switches; an /en/ link is always honoured.
-// ?lang= works on both, as it did on the static page.
+// of Hebrew. Hebrew pages auto-switch to the same page under /en/; an /en/
+// link is always honoured. ?lang= works on both, as it did on the static page.
 const redirectScript: Record<Lang, string> = {
-  he: `try{var q=new URLSearchParams(location.search).get("lang");if((q||localStorage.getItem("lang"))==="en")location.replace("${paths.en}")}catch(e){}`,
-  en: `try{if(new URLSearchParams(location.search).get("lang")==="he")location.replace("${paths.he}")}catch(e){}`,
+  he: `try{var q=new URLSearchParams(location.search).get("lang");if((q||localStorage.getItem("lang"))==="en")location.replace("/en"+location.pathname)}catch(e){}`,
+  en: `try{if(new URLSearchParams(location.search).get("lang")==="he")location.replace(location.pathname.slice(3)||"/")}catch(e){}`,
 };
 
 export function RootLayout({ lang, children }: { lang: Lang; children: ReactNode }) {

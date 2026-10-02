@@ -4,6 +4,18 @@ export type Lang = (typeof langs)[number];
 // Hebrew is the default and lives at the root.
 export const paths: Record<Lang, string> = { he: "/", en: "/en/" };
 
+// The pages beside the landing page, each in both languages.
+export type Slug = "privacy" | "terms" | "support";
+
+// "/" + slug for Hebrew, "/en/" + slug for English; no slug is the landing page.
+export function pathFor(lang: Lang, slug?: Slug): string {
+  return slug ? `${paths[lang]}${slug}/` : paths[lang];
+}
+
+// Where privacy requests and support mail go. Shown on the legal pages and
+// the support page, and required by both app stores.
+export const contactEmail = "contactfreebus@gmail.com";
+
 const en = {
   brand: "FreeBus",
   title: "FreeBus",
@@ -69,6 +81,13 @@ const en = {
   license: "Open source under the MIT license. Timetable data: Israel’s Ministry of Transport.",
   mapAttribution: "Map data ©",
   mapContributors: "OpenStreetMap contributors",
+  nav_privacy: "Privacy",
+  nav_terms: "Terms of use",
+  nav_support: "Support",
+  legalEyebrow: "Legal",
+  legalLightMode: "Light mode",
+  supportEyebrow: "Help",
+  updated: "Last updated",
 };
 
 export type Dict = Record<keyof typeof en, string>;
@@ -120,7 +139,7 @@ const he: Dict = {
   yours_p1: "קיצורי דרך לבית, לעבודה ולעוד מקומות ששמרתם.",
   yours_p2: "תחנות לידכם, המרחק אליהן והקווים שעוברים בהן בקרוב.",
   yours_p3: "מעבר מהיר למפה, לקווים, לתחנות ולהגדרות.",
-  opsTitle: "כל המפעילים ביישום אחד",
+  opsTitle: "כל הקווים באפליקציה אחת",
   opsSub: "קווים של חברות התחבורה הציבורית ברחבי ישראל, עם מסלולים ולוחות זמנים ממשרד התחבורה.",
   ctbEyebrow: "עוזרים לשפר את פריבוס",
   ctbTitle: "יש משהו שחסר לכם?",
@@ -138,6 +157,13 @@ const he: Dict = {
   license: "קוד פתוח ברישיון MIT. נתוני לוחות זמנים: משרד התחבורה.",
   mapAttribution: "נתוני מפה ©",
   mapContributors: "תורמי OpenStreetMap",
+  nav_privacy: "פרטיות",
+  nav_terms: "תנאי שימוש",
+  nav_support: "תמיכה",
+  legalEyebrow: "מסמכים משפטיים",
+  legalLightMode: "מצב בהיר",
+  supportEyebrow: "עזרה",
+  updated: "עדכון אחרון",
 };
 
 export const dicts: Record<Lang, Dict> = { en, he };

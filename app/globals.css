@@ -4,6 +4,7 @@
    route blue, live green, and each operator's own colour. */
 :root {
   --bg: #09090b;
+  --header-bg: rgba(9, 9, 11, 0.72);
   --fg: #fafafa;
   --fg-2: #a1a1aa;
   --fg-3: #71717a;
@@ -18,6 +19,20 @@
   --mono: var(--font-google-sans-code), var(--font-cascadia-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
   --gutter: 32px;
   color-scheme: dark;
+}
+
+/* The light palette exists only while an enabled legal-page toggle is in
+   the document. Navigation away removes it, including on client transitions. */
+:root:has(.legal-theme-toggle[aria-pressed="true"]) {
+  --bg: #fafafa;
+  --header-bg: rgba(250, 250, 250, 0.88);
+  --fg: #18181b;
+  --fg-2: #52525b;
+  --fg-3: #62626d;
+  --line: rgba(24, 24, 27, 0.12);
+  --line-2: rgba(24, 24, 27, 0.25);
+  --tile: linear-gradient(rgba(24, 24, 27, 0.035), rgba(24, 24, 27, 0.01));
+  color-scheme: light;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -66,7 +81,7 @@ svg { display: block; }
 .btn:focus-visible, .nav-link:focus-visible { outline: 2px solid var(--fg); outline-offset: 2px; }
 
 /* ---------- header ---------- */
-.site-header { position: sticky; top: 0; z-index: 20; background: rgba(9, 9, 11, 0.72); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+.site-header { position: sticky; top: 0; z-index: 20; background: var(--header-bg); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
 .header-inner { display: flex; align-items: center; height: 60px; gap: 16px; }
 .brand { display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 15px; }
 .brand svg { width: 16px; height: 20px; fill: currentColor; }
@@ -191,6 +206,31 @@ a.store:hover { border-color: var(--line-2); color: var(--fg); }
 .footer-inner { display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; }
 .site-footer a { color: var(--fg-2); }
 .site-footer a:hover { color: var(--fg); }
+.footer-links { display: flex; flex-wrap: wrap; gap: 8px 20px; }
+
+/* ---------- text pages: privacy, terms, support ---------- */
+.doc-main { padding: 72px 0 112px; }
+.doc { max-width: 760px; }
+.doc-head { padding-bottom: 32px; border-bottom: 1px solid var(--line); }
+.doc-tools { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+.legal-theme-toggle { background: transparent; min-height: 44px; }
+.legal-theme-toggle[aria-pressed="true"] { border-color: var(--fg-3); color: var(--fg); }
+.doc-head h1 { margin-top: 14px; font-size: clamp(36px, 5vw, 52px); font-weight: 500; letter-spacing: -0.03em; line-height: 1.08; }
+.doc-updated { margin-top: 14px; font: 13px var(--mono); color: var(--fg-3); }
+.doc-body { color: var(--fg-2); font-size: 16px; line-height: 1.7; }
+.doc-body > * + * { margin-top: 16px; }
+.doc-body h2 { margin-top: 48px; color: var(--fg); font-size: 22px; font-weight: 500; letter-spacing: -0.015em; line-height: 1.3; }
+.doc-body h3 { margin-top: 28px; color: var(--fg); font-size: 17px; font-weight: 600; }
+.doc-body h2 + *, .doc-body h3 + * { margin-top: 12px; }
+.doc-body strong { color: var(--fg); font-weight: 600; }
+.doc-body ul { padding-inline-start: 22px; display: flex; flex-direction: column; gap: 8px; }
+.doc-body li::marker { color: var(--fg-3); }
+.doc-body a { color: var(--fg); text-decoration: underline; text-decoration-color: var(--line-2); text-underline-offset: 3px; }
+.doc-body a:hover { text-decoration-color: var(--fg); }
+/* The short version up top: one bordered tile. */
+.doc-summary { margin-top: 32px; padding: 24px 28px; border: 1px solid var(--line); border-radius: 12px; background: var(--tile); }
+.doc-summary ul { margin-top: 12px; }
+.doc-body .doc-summary { margin-top: 32px; }
 
 /* ---------- iPhone, Space Black ----------
    Sized in container units so the proportions hold at any width: 1.5 metal
@@ -253,6 +293,8 @@ a.store:hover { border-color: var(--line-2); color: var(--fg); }
   .op-chip { height: 52px; padding: 0 18px; font-size: 16px; }
   .phone-tile .iphone { width: 240px; }
   .peek { padding: 24px; }
+  .doc-main { padding: 48px 0 80px; }
+  .doc-summary { padding: 20px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .marquee-track { animation: none; }

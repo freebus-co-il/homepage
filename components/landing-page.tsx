@@ -1,17 +1,14 @@
 import type { ReactNode } from "react";
-import { Glyph } from "@/components/icons";
 import { HeroPhones } from "@/components/hero-phones";
 import { IPhone } from "@/components/iphone";
-import { LangSwitch } from "@/components/lang-switch";
+import { SiteFooter, SiteHeader, repo } from "@/components/site-chrome";
 import {
   IconBrandApple,
   IconBrandGithub,
   IconBrandGooglePlay,
   IconCheck,
 } from "@tabler/icons-react";
-import { dicts, paths, type Dict, type Lang } from "@/lib/i18n";
-
-const repo = "https://github.com/freebus-co-il/freebus";
+import { dicts, type Dict, type Lang } from "@/lib/i18n";
 
 // Store listings. Until an app is published its link is null and the chip
 // shows as "coming soon"; set the URL and it becomes a link.
@@ -67,26 +64,11 @@ function Checklist({ items }: { items: string[] }) {
 
 export function LandingPage({ lang }: { lang: Lang }) {
   const t = dicts[lang];
-  const other: Lang = lang === "he" ? "en" : "he";
   const rows = [operators.slice(0, 7), operators.slice(7)];
 
   return (
     <>
-      <header className="site-header">
-        <div className="container header-inner">
-          <a className="brand" href={paths[lang]} aria-label={t.brand}>
-            <Glyph />
-            <span>{t.brand}</span>
-          </a>
-          <nav className="header-end">
-            <LangSwitch to={other} label={t.switchTo} />
-            <a className="btn btn-ghost btn-sm" href={repo}>
-              <IconBrandGithub className="icon gh" />
-              <span>GitHub</span>
-            </a>
-          </nav>
-        </div>
-      </header>
+      <SiteHeader lang={lang} />
 
       <main>
         <section className="hero">
@@ -237,14 +219,7 @@ export function LandingPage({ lang }: { lang: Lang }) {
         </section>
       </main>
 
-      <footer className="site-footer">
-        <div className="container footer-inner">
-          <span>{t.license}</span>
-          <span>
-            {t.mapAttribution} <a href="https://www.openstreetmap.org/copyright">{t.mapContributors}</a>
-          </span>
-        </div>
-      </footer>
+      <SiteFooter lang={lang} />
     </>
   );
 }
