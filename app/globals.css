@@ -97,7 +97,7 @@ svg { display: block; }
 /* Three phones fanned out under the hero, shown whole. The box is as tall as
    the middle phone (300px wide → 624px) plus a little for the tilted sides. */
 .hero-preview {
-  position: relative; height: 660px; margin-top: 72px;
+  position: relative; height: min(660px, 96vw); margin-top: 72px;
   display: flex; justify-content: center;
 }
 .hero-preview::before {
@@ -106,12 +106,15 @@ svg { display: block; }
   filter: blur(20px);
 }
 .hero-phone { position: absolute; top: 0; }
-.hero-phone .iphone { width: 300px; }
+/* Desktop sizes where there's room; below that everything scales with the
+   screen so the whole fan, tilt included, stays inside it (a tilted side
+   phone reaches 25vw + ~22.4vw from the centre). */
+.hero-phone .iphone { width: min(300px, 44vw); }
 .hero-phone.middle { z-index: 2; }
-.hero-phone.side { top: 64px; z-index: 1; opacity: 0.9; }
-.hero-phone.side .iphone { width: 262px; }
-.hero-phone.start { translate: -270px 0; rotate: -7deg; }
-.hero-phone.end { translate: 270px 0; rotate: 7deg; }
+.hero-phone.side { top: min(64px, 9vw); z-index: 1; opacity: 0.9; }
+.hero-phone.side .iphone { width: min(262px, 36vw); }
+.hero-phone.start { translate: max(-270px, -25vw) 0; rotate: -7deg; }
+.hero-phone.end { translate: min(270px, 25vw) 0; rotate: 7deg; }
 
 /* ---------- sections ---------- */
 .sec { padding: 96px 0; border-top: 1px solid var(--line); }
@@ -216,6 +219,8 @@ svg { display: block; }
 }
 @media (max-width: 900px) {
   .split { grid-template-columns: 1fr; gap: 40px; }
+  /* Stacked, the phone always follows its copy. */
+  .split .phone-tile { order: 1; }
   .cell-grid { grid-template-columns: 1fr; }
   .cell + .cell { border-inline-start: 0; border-top: 1px solid var(--line); }
 }
@@ -223,14 +228,13 @@ svg { display: block; }
   :root { --gutter: 16px; }
   .hero { padding-top: 56px; }
   .hero-sub, .section-sub, .cta-sub { font-size: 16px; }
-  .hero-preview { height: 480px; margin-top: 48px; }
-  .hero-phone .iphone { width: 220px; }
-  .hero-phone.side .iphone { width: 190px; }
-  .hero-phone.side { top: 44px; }
-  .hero-phone.start { translate: -150px 0; }
-  .hero-phone.end { translate: 150px 0; }
+  .hero-preview { margin-top: 48px; }
+  /* The glow clips to a hard-edged band at this size. */
+  .hero-preview::before { display: none; }
   .sec { padding: 72px 0; }
   .cta { padding: 96px 0; }
+  .section-actions { flex-direction: column; }
+  .section-actions .btn { width: 100%; }
   .op-chip { height: 52px; padding: 0 18px; font-size: 16px; }
   .phone-tile .iphone { width: 240px; }
   .peek { padding: 24px; }
