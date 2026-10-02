@@ -166,7 +166,8 @@ export function LandingPage({ lang }: { lang: Lang }) {
             </div>
             <div>
               <Head eyebrow={t.live_phase} title={t.live_t} text={t.live_d} />
-              <Checklist items={[t.live_p1, t.live_p2, t.live_p3]} />
+              <Checklist items={lang === "he" ? [t.live_p1, t.live_p2] : [t.live_p1, t.live_p2, t.live_p3]} />
+              {lang === "he" && <p className="section-sub">{t.live_p3}</p>}
             </div>
           </div>
         </section>
