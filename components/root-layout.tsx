@@ -1,3 +1,4 @@
+import { GoogleAnalytics } from "@next/third-parties/google";
 import type { Metadata, Viewport } from "next";
 import { Cascadia_Mono, Google_Sans, Google_Sans_Code } from "next/font/google";
 import type { ReactNode } from "react";
@@ -8,6 +9,10 @@ const googleSans = Google_Sans({ subsets: ["latin", "hebrew"], variable: "--font
 const googleSansCode = Google_Sans_Code({ subsets: ["latin"], variable: "--font-google-sans-code" });
 // Google Sans Code has no Hebrew; Cascadia Mono supplies just those letters.
 const cascadiaMono = Cascadia_Mono({ subsets: ["hebrew"], variable: "--font-cascadia-mono" });
+
+// GA4 measurement ID. Not a secret: it ships in every page's HTML anyway.
+// Left out of `next dev` so local work doesn't show up in the stats.
+const gaId = "G-CN3617M6EY";
 
 export const viewport: Viewport = {
   themeColor: "#000000",
@@ -58,6 +63,7 @@ export function RootLayout({ lang, children }: { lang: Lang; children: ReactNode
         <script dangerouslySetInnerHTML={{ __html: redirectScript[lang] }} />
       </head>
       <body>{children}</body>
+      {gaId && process.env.NODE_ENV === "production" && <GoogleAnalytics gaId={gaId} />}
     </html>
   );
 }
