@@ -1,0 +1,241 @@
+/* Modelled on t3.codes: a near-black zinc page, sections divided by hairlines,
+   tiles with a 1px border and a faint top sheen, one white primary button,
+   a mono eyebrow over every section title. Accents come from the app:
+   route blue, live green, and each operator's own colour. */
+:root {
+  --bg: #09090b;
+  --fg: #fafafa;
+  --fg-2: #a1a1aa;
+  --fg-3: #71717a;
+  --line: rgba(255, 255, 255, 0.08);
+  --line-2: rgba(255, 255, 255, 0.14);
+  --tile: linear-gradient(rgba(255, 255, 255, 0.016), rgba(255, 255, 255, 0));
+  --route: #6e93ff;
+  --live: oklch(0.72 0.16 150);
+  --bezel: #2c2c2e;
+
+  --font: var(--font-google-sans), system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: var(--font-google-sans-code), var(--font-cascadia-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+  --gutter: 32px;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  background: var(--bg); color: var(--fg);
+  font: 16px/1.55 var(--font);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+svg { display: block; }
+/* Tabler icons: sized by font-size, stroked in the text colour. */
+.icon { width: 1em; height: 1em; stroke-width: 1.75; flex: none; }
+.container { max-width: 1240px; margin: 0 auto; padding: 0 var(--gutter); }
+
+/* ---------- type ---------- */
+.display { font-weight: 500; letter-spacing: -0.035em; line-height: 1.05; }
+.eyebrow { font: 500 12px/1.4 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--fg-3); }
+/* Hebrew has no capitals and its letters shouldn't be tracked apart, so the
+   eyebrow keeps the mono face (Cascadia Mono's Hebrew) but drops the caps
+   and the tracking. */
+:lang(he) .eyebrow { font-size: 13px; letter-spacing: 0; text-transform: none; }
+.section-head { max-width: 720px; }
+.section-head.center { margin: 0 auto; text-align: center; }
+.section-head .eyebrow { margin-bottom: 14px; }
+.section-head h2 { font-size: clamp(32px, 4vw, 48px); font-weight: 500; letter-spacing: -0.03em; line-height: 1.08; }
+.section-sub { margin-top: 16px; max-width: 620px; font-size: 18px; color: var(--fg-2); }
+
+/* ---------- buttons ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  height: 41px; padding: 0 18px; border-radius: 8px;
+  font: 600 14px/1 var(--font); white-space: nowrap; cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+.btn-lg { height: 51px; padding: 0 22px; border-radius: 10px; font-size: 15px; }
+.btn-sm { height: 34px; padding: 0 12px; font-size: 13px; font-weight: 500; }
+.btn-primary { background: var(--fg); color: var(--bg); }
+.btn-primary:hover { background: #e4e4e7; }
+.btn-ghost { border: 1px solid var(--line); color: var(--fg-2); }
+.btn-ghost:hover { border-color: var(--line-2); color: var(--fg); }
+.btn .gh { font-size: 17px; }
+/* Icons sit to the left of the label in Hebrew too. */
+[dir="rtl"] .btn { flex-direction: row-reverse; }
+.btn:focus-visible, .nav-link:focus-visible { outline: 2px solid var(--fg); outline-offset: 2px; }
+
+/* ---------- header ---------- */
+.site-header { position: sticky; top: 0; z-index: 20; background: rgba(9, 9, 11, 0.72); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+.header-inner { display: flex; align-items: center; height: 60px; gap: 16px; }
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 15px; }
+.brand svg { width: 16px; height: 20px; fill: currentColor; }
+.header-end { margin-inline-start: auto; display: flex; align-items: center; gap: 18px; }
+.nav-link { font-size: 13px; color: var(--fg-2); transition: color 0.15s; }
+.nav-link:hover { color: var(--fg); }
+
+/* ---------- hero ---------- */
+.hero { position: relative; padding: 96px 0 0; overflow: hidden; }
+.hero-grid {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 64px 64px; background-position: center top;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 30%, transparent 75%);
+}
+
+.hero-inner { position: relative; text-align: center; }
+.hero h1 { font-size: clamp(40px, 6.2vw, 76px); max-width: 11em; margin: 0 auto; }
+.hero h1 span, .hero h1 strong { display: block; }
+/* Google Sans tops out at 700. */
+.hero h1 strong { font-weight: 700; }
+.hero-sub { margin: 24px auto 0; max-width: 640px; font-size: 18px; color: var(--fg-2); }
+.hero-actions { margin-top: 36px; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+.hero-note { font-size: 13px; color: var(--fg-3); }
+
+/* Three phones fanned out under the hero, shown whole. The box is as tall as
+   the middle phone (300px wide → 624px) plus a little for the tilted sides. */
+.hero-preview {
+  position: relative; height: 660px; margin-top: 72px;
+  display: flex; justify-content: center;
+}
+.hero-preview::before {
+  content: ""; position: absolute; left: 50%; top: 40px; width: 900px; height: 520px; translate: -50% 0;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--route) 22%, transparent), transparent);
+  filter: blur(20px);
+}
+.hero-phone { position: absolute; top: 0; }
+.hero-phone .iphone { width: 300px; }
+.hero-phone.middle { z-index: 2; }
+.hero-phone.side { top: 64px; z-index: 1; opacity: 0.9; }
+.hero-phone.side .iphone { width: 262px; }
+.hero-phone.start { translate: -270px 0; rotate: -7deg; }
+.hero-phone.end { translate: 270px 0; rotate: 7deg; }
+
+/* ---------- sections ---------- */
+.sec { padding: 96px 0; border-top: 1px solid var(--line); }
+
+/* operators */
+.marquee { margin-top: 48px; display: flex; flex-direction: column; gap: 14px; direction: ltr;
+  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
+.marquee-row { overflow: hidden; }
+.marquee-track { display: flex; width: max-content; animation: marquee 48s linear infinite; }
+.marquee-row.reverse .marquee-track { animation-direction: reverse; animation-duration: 56s; }
+.marquee-group { display: flex; gap: 14px; padding-right: 14px; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+.op-chip {
+  display: inline-flex; align-items: center; height: 64px; padding: 0 24px;
+  border: 1px solid var(--line); border-radius: 12px; background: var(--tile);
+  font-size: 18px; font-weight: 500; white-space: nowrap;
+}
+
+/* tiles */
+.tile { border: 1px solid var(--line); border-radius: 12px; background: var(--tile); }
+
+/* trip planning: one bordered strip split into cells */
+.cell-grid { margin-top: 48px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+.cell { padding: 28px; background: var(--tile); display: flex; flex-direction: column; gap: 18px; }
+.cell + .cell { border-inline-start: 1px solid var(--line); }
+.cell p { color: var(--fg-2); font-size: 16px; }
+
+/* a phone, copy beside it */
+.split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 64px; align-items: center; }
+.phone-tile { display: flex; justify-content: center; }
+.phone-tile .iphone { width: 290px; }
+.checklist { list-style: none; margin-top: 28px; display: flex; flex-direction: column; gap: 12px; }
+.checklist li { display: flex; gap: 12px; align-items: flex-start; color: var(--fg-2); font-size: 15px; }
+.checklist .icon { font-size: 18px; color: var(--live); margin-top: 2px; stroke-width: 2.2; }
+
+/* three tiles, each ending in its whole phone */
+.peek-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.peek { display: flex; flex-direction: column; padding: 32px; }
+.peek h3 { margin-top: 12px; font-size: 24px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.2; }
+.peek-text { margin-top: 10px; color: var(--fg-2); font-size: 15px; }
+.peek .checklist { margin-top: 20px; gap: 10px; }
+.peek .checklist li { font-size: 14px; }
+.peek-phone { margin-top: auto; padding-top: 36px; display: flex; justify-content: center; }
+.peek-phone .iphone { width: 250px; }
+
+/* contribute: the same cell strip, numbered */
+.cell h3 { font-size: 20px; font-weight: 500; letter-spacing: -0.01em; margin-bottom: -8px; }
+.step-num { font: 12px var(--mono); color: var(--fg-3); }
+.section-actions { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 10px; }
+
+/* closing call to action */
+.cta { padding: 140px 0; text-align: center; }
+.cta h2 { font-size: clamp(40px, 6vw, 72px); }
+.cta-sub { margin: 20px auto 0; max-width: 560px; font-size: 18px; color: var(--fg-2); }
+.cta-actions { margin-top: 36px; display: flex; justify-content: center; gap: 12px; }
+
+/* ---------- footer ---------- */
+.site-footer { border-top: 1px solid var(--line); padding: 32px 0 40px; font-size: 13px; color: var(--fg-3); }
+.footer-inner { display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; }
+.site-footer a { color: var(--fg-2); }
+.site-footer a:hover { color: var(--fg); }
+
+/* ---------- iPhone, Space Black ----------
+   Sized in container units so the proportions hold at any width: 1.5 metal
+   band + 2.6 bezel per side, and corner radii stepping down to the screen's
+   (55pt on a 402pt display). The buttons are hardware, so they use physical
+   left/right and never mirror in RTL. */
+.iphone { position: relative; width: 300px; max-width: 100%; container-type: inline-size; flex: none; }
+.iphone-frame {
+  position: relative; z-index: 1;
+  padding: 1.5cqw; border-radius: 16.4cqw;
+  background: linear-gradient(135deg, #4a4b50 0%, #1c1d20 16%, #3a3b40 38%, #141518 60%, #34353a 80%, #1a1b1e 100%);
+  box-shadow:
+    inset 0 0 0 0.3cqw rgba(255, 255, 255, 0.14),
+    inset 0 0 0 0.6cqw rgba(0, 0, 0, 0.35),
+    0 1.5cqw 3cqw -1cqw rgba(0, 0, 0, 0.25),
+    0 6cqw 12cqw -4cqw rgba(0, 0, 0, 0.3);
+}
+.iphone-bezel { background: #000; padding: 2.6cqw; border-radius: 14.9cqw; }
+.iphone-screen { display: block; width: 100%; height: auto; border-radius: 12.3cqw; }
+.iphone-btn {
+  position: absolute; width: 1.2cqw;
+  background: linear-gradient(90deg, #1b1c1f, #4a4b50 50%, #1f2023);
+}
+.iphone-btn.action, .iphone-btn.vol-up, .iphone-btn.vol-down { left: -0.9cqw; border-radius: 0.6cqw 0 0 0.6cqw; }
+.iphone-btn.power, .iphone-btn.camera { right: -0.9cqw; border-radius: 0 0.6cqw 0.6cqw 0; }
+.iphone-btn.action { top: 17.5%; height: 4.5%; }
+.iphone-btn.vol-up { top: 25%; height: 7%; }
+.iphone-btn.vol-down { top: 34%; height: 7%; }
+.iphone-btn.power { top: 27%; height: 10.5%; }
+/* Camera Control sits nearly flush, under sapphire. */
+.iphone-btn.camera { top: 58%; height: 6.5%; right: -0.5cqw; width: 0.8cqw; background: linear-gradient(90deg, #0e0f11, #2c2d31 50%, #0e0f11); }
+
+.iphone-screens { position: relative; }
+.iphone-screens .iphone-screen { transition: opacity 0.35s ease; }
+.iphone-screens .iphone-screen:not(:first-child) { position: absolute; inset: 0; }
+.iphone-screens .iphone-screen[data-active="false"] { opacity: 0; }
+
+/* ---------- responsive ---------- */
+@media (max-width: 1100px) {
+  .peek-grid { grid-template-columns: 1fr; max-width: 560px; margin: 0 auto; }
+}
+@media (max-width: 900px) {
+  .split { grid-template-columns: 1fr; gap: 40px; }
+  .cell-grid { grid-template-columns: 1fr; }
+  .cell + .cell { border-inline-start: 0; border-top: 1px solid var(--line); }
+}
+@media (max-width: 640px) {
+  :root { --gutter: 16px; }
+  .hero { padding-top: 56px; }
+  .hero-sub, .section-sub, .cta-sub { font-size: 16px; }
+  .hero-preview { height: 480px; margin-top: 48px; }
+  .hero-phone .iphone { width: 220px; }
+  .hero-phone.side .iphone { width: 190px; }
+  .hero-phone.side { top: 44px; }
+  .hero-phone.start { translate: -150px 0; }
+  .hero-phone.end { translate: 150px 0; }
+  .sec { padding: 72px 0; }
+  .cta { padding: 96px 0; }
+  .op-chip { height: 52px; padding: 0 18px; font-size: 16px; }
+  .phone-tile .iphone { width: 240px; }
+  .peek { padding: 24px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+  .iphone-screens .iphone-screen { transition: none; }
+}

@@ -1,0 +1,38 @@
+{
+  "name": "freebus-co-il",
+  "version": "0.1.0",
+  "description": "The FreeBus landing page, freebus.co.il: a free, open-source public transit app for Israel.",
+  "license": "MIT",
+  "homepage": "https://freebus.co.il",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/freebus-co-il/homepage.git"
+  },
+  "bugs": {
+    "url": "https://github.com/freebus-co-il/homepage/issues"
+  },
+  "private": true,
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@tabler/icons-react": "^3.48.0",
+    "next": "16.3.8",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.3.8",
+    "typescript": "^5"
+  }
+}
