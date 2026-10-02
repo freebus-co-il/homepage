@@ -96,7 +96,10 @@ svg { display: block; }
 
 /* Three phones fanned out under the hero, shown whole. The box is as tall as
    the middle phone (300px wide → 624px) plus a little for the tilted sides. */
+/* --fan runs 0→1 as the phones spread out on load (hero-phones.tsx); it
+   rests at 1, so without animation the fan is simply in place. */
 .hero-preview {
+  --fan: 1;
   position: relative; height: min(660px, 96vw); margin-top: 72px;
   display: flex; justify-content: center;
 }
@@ -111,10 +114,10 @@ svg { display: block; }
    phone reaches 25vw + ~22.4vw from the centre). */
 .hero-phone .iphone { width: min(300px, 44vw); }
 .hero-phone.middle { z-index: 2; }
-.hero-phone.side { top: min(64px, 9vw); z-index: 1; opacity: 0.9; }
+.hero-phone.side { top: calc(min(64px, 9vw) * var(--fan)); z-index: 1; opacity: calc(0.9 * var(--fan)); }
 .hero-phone.side .iphone { width: min(262px, 36vw); }
-.hero-phone.start { translate: max(-270px, -25vw) 0; rotate: -7deg; }
-.hero-phone.end { translate: min(270px, 25vw) 0; rotate: 7deg; }
+.hero-phone.start { translate: calc(max(-270px, -25vw) * var(--fan)) 0; rotate: calc(-7deg * var(--fan)); }
+.hero-phone.end { translate: calc(min(270px, 25vw) * var(--fan)) 0; rotate: calc(7deg * var(--fan)); }
 
 /* ---------- sections ---------- */
 .sec { padding: 96px 0; border-top: 1px solid var(--line); }

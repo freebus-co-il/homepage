@@ -1,4 +1,5 @@
 import { Glyph } from "@/components/icons";
+import { HeroPhones } from "@/components/hero-phones";
 import { IPhone } from "@/components/iphone";
 import { LangSwitch } from "@/components/lang-switch";
 import {
@@ -94,17 +95,7 @@ export function LandingPage({ lang }: { lang: Lang }) {
               <p className="hero-note">{t.noAccount}</p>
             </div>
           </div>
-          <div className="hero-preview">
-            <div className="hero-phone side start">
-              <IPhone screens={[shot("home", lang, t)]} />
-            </div>
-            <div className="hero-phone middle">
-              <IPhone screens={[shot("plan", lang, t)]} />
-            </div>
-            <div className="hero-phone side end">
-              <IPhone screens={[shot("realtime", lang, t)]} />
-            </div>
-          </div>
+          <HeroPhones start={shot("home", lang, t)} middle={shot("plan", lang, t)} end={shot("realtime", lang, t)} />
         </section>
 
         <section className="sec">
