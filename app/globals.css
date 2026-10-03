@@ -238,6 +238,19 @@ a.store:hover { border-color: var(--line-2); color: var(--fg); }
 .doc-summary ul { margin-top: 12px; }
 .doc-body .doc-summary { margin-top: 32px; }
 
+/* Support FAQ: one row per question, the answer opens beneath it. */
+.faq { border-top: 1px solid var(--line); }
+.faq details { border-bottom: 1px solid var(--line); }
+.faq summary { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 0; color: var(--fg); font-size: 17px; font-weight: 600; cursor: pointer; list-style: none; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; flex: none; font: 400 20px/1 var(--mono); color: var(--fg-3); transition: transform 0.2s ease; }
+.faq details[open] summary::after { transform: rotate(45deg); }
+.faq summary:hover::after { color: var(--fg); }
+.faq summary:focus-visible { outline: 2px solid var(--fg-3); outline-offset: 4px; border-radius: 4px; }
+.faq details > :not(summary) { margin-bottom: 18px; }
+.faq details > summary + * { margin-top: 0; }
+.faq details > * + :not(summary) { margin-top: 12px; }
+
 /* ---------- iPhone, Space Black ----------
    Sized in container units so the proportions hold at any width: 1.5 metal
    band + 2.6 bezel per side, and corner radii stepping down to the screen's
