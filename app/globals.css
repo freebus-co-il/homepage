@@ -82,6 +82,12 @@ svg { display: block; }
 
 /* ---------- header ---------- */
 .site-header { position: sticky; top: 0; z-index: 20; background: var(--header-bg); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+/* iOS Safari (26+) only extends a top bar's colour up behind its floating
+   address bar when the bar is opaque; a translucent one leaves a strip of
+   page scrolling above the header. So on iOS the header is solid. */
+@supports (-webkit-touch-callout: none) {
+  .site-header { background: var(--bg); backdrop-filter: none; }
+}
 .header-inner { display: flex; align-items: center; height: 60px; gap: 16px; }
 .brand { display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 15px; }
 .brand svg { width: 16px; height: 20px; fill: currentColor; }
