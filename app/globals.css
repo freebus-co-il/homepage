@@ -280,6 +280,8 @@ a.store:hover { border-color: var(--line-2); color: var(--fg); }
   .cell + .cell { border-inline-start: 0; border-top: 1px solid var(--line); }
 }
 @media (max-width: 640px) {
+  /* The label takes its own line, so both store chips sit together below it. */
+  .stores-label { flex-basis: 100%; text-align: center; }
   :root { --gutter: 16px; }
   .hero { padding-top: 56px; }
   .hero-sub, .section-sub, .cta-sub { font-size: 16px; }
