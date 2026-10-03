@@ -25,7 +25,7 @@ export function DocPage({ lang, slug, doc }: { lang: Lang; slug: Slug; doc: Doc 
             <div className="doc-tools">
               <p className="eyebrow">{slug === "support" ? t.supportEyebrow : t.legalEyebrow}</p>
               {(slug === "privacy" || slug === "terms") && (
-                <LegalThemeToggle key={`${lang}/${slug}`} label={t.legalLightMode} />
+                <LegalThemeToggle key={`${lang}/${slug}`} lightLabel={t.legalLightMode} darkLabel={t.legalDarkMode} />
               )}
             </div>
             <h1>{doc.title}</h1>

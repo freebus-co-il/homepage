@@ -19,7 +19,8 @@ export function SiteHeader({ lang, slug }: { lang: Lang; slug?: Slug }) {
         </a>
         <nav className="header-end">
           <LangSwitch to={other} href={pathFor(other, slug)} label={t.switchTo} />
-          <a className="btn btn-ghost btn-sm" href={repo}>
+          {/* The label is the English "GitHub" in both languages, so it lays out left to right. */}
+          <a className="btn btn-ghost btn-sm" href={repo} dir="ltr">
             <IconBrandGithub className="icon gh" />
             <span>GitHub</span>
           </a>

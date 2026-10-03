@@ -23,7 +23,7 @@
 
 /* The light palette exists only while an enabled legal-page toggle is in
    the document. Navigation away removes it, including on client transitions. */
-:root:has(.legal-theme-toggle[aria-pressed="true"]) {
+:root:has(.legal-theme-toggle[data-light]) {
   --bg: #fafafa;
   --header-bg: rgba(250, 250, 250, 0.88);
   --fg: #18181b;
@@ -77,7 +77,6 @@ svg { display: block; }
 .btn-ghost:hover { border-color: var(--line-2); color: var(--fg); }
 .btn .gh { font-size: 17px; }
 /* Icons sit to the left of the label in Hebrew too. */
-[dir="rtl"] .btn { flex-direction: row-reverse; }
 .btn:focus-visible, .nav-link:focus-visible { outline: 2px solid var(--fg); outline-offset: 2px; }
 
 /* ---------- header ---------- */
@@ -114,18 +113,9 @@ svg { display: block; }
 .hero-sub { margin: 24px auto 0; max-width: 640px; font-size: 18px; color: var(--fg-2); }
 .hero-actions { margin-top: 36px; display: flex; flex-direction: column; align-items: center; gap: 16px; }
 .hero-note { font-size: 13px; color: var(--fg-3); }
-/* Store chips: outlined like the ghost button, muted until there's a link. */
-.stores { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px 10px; }
-.stores-label { font: 13px var(--mono); color: var(--fg-3); }
-.store {
-  display: inline-flex; align-items: center; gap: 8px; height: 36px; padding: 0 14px;
-  border: 1px solid var(--line); border-radius: 8px;
-  font-size: 13px; font-weight: 500; color: var(--fg-2);
-}
-.store .icon { font-size: 16px; }
-a.store:hover { border-color: var(--line-2); color: var(--fg); }
-.store[aria-disabled="true"] { color: var(--fg-3); cursor: default; }
-[dir="rtl"] .store { flex-direction: row-reverse; }
+.hero-buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+.ios-soon { display: inline-flex; align-items: center; gap: 6px; font: 13px var(--mono); color: var(--fg-3); }
+.ios-soon .icon { font-size: 15px; }
 
 /* Three phones fanned out under the hero, shown whole. The box is as tall as
    the middle phone (300px wide → 624px) plus a little for the tilted sides. */
@@ -220,7 +210,7 @@ a.store:hover { border-color: var(--line-2); color: var(--fg); }
 .doc-head { padding-bottom: 32px; border-bottom: 1px solid var(--line); }
 .doc-tools { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
 .legal-theme-toggle { background: transparent; min-height: 44px; }
-.legal-theme-toggle[aria-pressed="true"] { border-color: var(--fg-3); color: var(--fg); }
+.legal-theme-toggle[data-light] { border-color: var(--line-2); color: var(--fg); }
 .doc-head h1 { margin-top: 14px; font-size: clamp(36px, 5vw, 52px); font-weight: 500; letter-spacing: -0.03em; line-height: 1.08; }
 .doc-updated { margin-top: 14px; font: 13px var(--mono); color: var(--fg-3); }
 .doc-body { color: var(--fg-2); font-size: 16px; line-height: 1.7; }
@@ -299,8 +289,8 @@ a.store:hover { border-color: var(--line-2); color: var(--fg); }
   .cell + .cell { border-inline-start: 0; border-top: 1px solid var(--line); }
 }
 @media (max-width: 640px) {
-  /* The label takes its own line, so both store chips sit together below it. */
-  .stores-label { flex-basis: 100%; text-align: center; }
+  .hero-buttons { flex-direction: column; width: 100%; }
+  .hero-buttons .btn { width: 100%; }
   :root { --gutter: 16px; }
   .hero { padding-top: 56px; }
   .hero-sub, .section-sub, .cta-sub { font-size: 16px; }

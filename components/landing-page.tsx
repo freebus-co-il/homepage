@@ -1,4 +1,3 @@
-import type { ReactNode } from "react";
 import { HeroPhones } from "@/components/hero-phones";
 import { IPhone } from "@/components/iphone";
 import { SiteFooter, SiteHeader, repo } from "@/components/site-chrome";
@@ -10,12 +9,9 @@ import {
 } from "@tabler/icons-react";
 import { dicts, type Dict, type Lang } from "@/lib/i18n";
 
-// Store listings. Until an app is published its link is null and the chip
-// shows as "coming soon"; set the URL and it becomes a link.
-const stores: { name: string; icon: ReactNode; url: string | null }[] = [
-  { name: "App Store", icon: <IconBrandApple className="icon" />, url: null },
-  { name: "Google Play", icon: <IconBrandGooglePlay className="icon" />, url: null },
-];
+// Android testing opt-in. Google Play needs 12 testers before the app can be
+// published; swap this for the store listing once it's live.
+const androidBeta = "https://play.google.com/apps/internaltest/4701662289299670512";
 
 // Operators, as named in the national timetable feed.
 const operators: { he: string; en: string }[] = [
@@ -80,26 +76,20 @@ export function LandingPage({ lang }: { lang: Lang }) {
             </h1>
             <p className="hero-sub">{t.lede}</p>
             <div className="hero-actions">
-              <a className="btn btn-primary btn-lg" href={repo}>
-                <IconBrandGithub className="icon gh" />
-                <span>{t.ctaGithub}</span>
-              </a>
-              <div className="stores">
-                {stores.some((s) => !s.url) && <span className="stores-label">{t.storesSoon}</span>}
-                {stores.map((store) =>
-                  store.url ? (
-                    <a key={store.name} className="store" href={store.url}>
-                      {store.icon}
-                      <span>{store.name}</span>
-                    </a>
-                  ) : (
-                    <span key={store.name} className="store" aria-disabled="true">
-                      {store.icon}
-                      <span>{store.name}</span>
-                    </span>
-                  ),
-                )}
+              <div className="hero-buttons">
+                <a className="btn btn-primary btn-lg" href={androidBeta}>
+                  <IconBrandGooglePlay className="icon gh" />
+                  <span>{t.betaCta}</span>
+                </a>
+                <a className="btn btn-ghost btn-lg" href={repo}>
+                  <IconBrandGithub className="icon gh" />
+                  <span>{t.ctaGithub}</span>
+                </a>
               </div>
+              <p className="ios-soon">
+                <IconBrandApple className="icon" />
+                <span>{t.iosSoon}</span>
+              </p>
               <p className="hero-note">{t.noAccount}</p>
             </div>
           </div>
