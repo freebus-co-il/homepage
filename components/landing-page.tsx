@@ -1,4 +1,3 @@
-import { AndroidBetaLink } from "@/components/android-beta-link";
 import { HeroPhones } from "@/components/hero-phones";
 import { IPhone } from "@/components/iphone";
 import { SiteFooter, SiteHeader, repo } from "@/components/site-chrome";
@@ -9,6 +8,8 @@ import {
   IconCheck,
 } from "@tabler/icons-react";
 import { dicts, type Dict, type Lang } from "@/lib/i18n";
+
+const androidBeta = "https://play.google.com/apps/testing/il.co.freebus";
 
 // Operators, as named in the national timetable feed.
 const operators: { he: string; en: string }[] = [
@@ -74,10 +75,10 @@ export function LandingPage({ lang }: { lang: Lang }) {
             <p className="hero-sub">{t.lede}</p>
             <div className="hero-actions">
               <div className="hero-buttons">
-                <AndroidBetaLink className="btn btn-primary btn-lg">
+                <a className="btn btn-primary btn-lg" href={androidBeta}>
                   <IconBrandGooglePlay className="icon gh" />
                   <span>{t.betaCta}</span>
-                </AndroidBetaLink>
+                </a>
                 <a className="btn btn-ghost btn-lg" href={repo}>
                   <IconBrandGithub className="icon gh" />
                   <span>{t.ctaGithub}</span>
