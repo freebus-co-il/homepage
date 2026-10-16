@@ -10,6 +10,7 @@ import {
 import { dicts, type Dict, type Lang } from "@/lib/i18n";
 
 const androidBeta = "https://play.google.com/apps/testing/il.co.freebus";
+const iosApp = "https://apps.apple.com/il/app/freebus/id6818839188";
 
 // Operators, as named in the national timetable feed.
 const operators: { he: string; en: string }[] = [
@@ -75,6 +76,10 @@ export function LandingPage({ lang }: { lang: Lang }) {
             <p className="hero-sub">{t.lede}</p>
             <div className="hero-actions">
               <div className="hero-buttons">
+                <a className="btn btn-primary btn-lg" href={iosApp}>
+                  <IconBrandApple className="icon gh" />
+                  <span>{t.iosCta}</span>
+                </a>
                 <a className="btn btn-primary btn-lg" href={androidBeta}>
                   <IconBrandGooglePlay className="icon gh" />
                   <span>{t.betaCta}</span>
@@ -84,10 +89,6 @@ export function LandingPage({ lang }: { lang: Lang }) {
                   <span>{t.ctaGithub}</span>
                 </a>
               </div>
-              <p className="ios-soon">
-                <IconBrandApple className="icon" />
-                <span>{t.iosSoon}</span>
-              </p>
               <p className="hero-note">{t.noAccount}</p>
             </div>
           </div>

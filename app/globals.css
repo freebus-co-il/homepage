@@ -114,8 +114,6 @@ svg { display: block; }
 .hero-actions { margin-top: 36px; display: flex; flex-direction: column; align-items: center; gap: 16px; }
 .hero-note { font-size: 13px; color: var(--fg-3); }
 .hero-buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
-.ios-soon { display: inline-flex; align-items: center; gap: 6px; font: 13px var(--mono); color: var(--fg-3); }
-.ios-soon .icon { font-size: 15px; }
 
 /* Three phones fanned out under the hero, shown whole. The box is as tall as
    the middle phone (300px wide → 624px) plus a little for the tilted sides. */
