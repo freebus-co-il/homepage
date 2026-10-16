@@ -48,6 +48,7 @@ export function SiteFooter({ lang }: { lang: Lang }) {
         <span>
           {t.mapAttribution} <a href="https://www.openstreetmap.org/copyright">{t.mapContributors}</a>
         </span>
+        <p className="footer-legal">{t.trademarks}</p>
       </div>
     </footer>
   );
