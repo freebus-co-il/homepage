@@ -1,3 +1,4 @@
+import { AndroidBetaLink } from "@/components/android-beta-link";
 import { HeroPhones } from "@/components/hero-phones";
 import { IPhone } from "@/components/iphone";
 import { SiteFooter, SiteHeader, repo } from "@/components/site-chrome";
@@ -8,10 +9,6 @@ import {
   IconCheck,
 } from "@tabler/icons-react";
 import { dicts, type Dict, type Lang } from "@/lib/i18n";
-
-// Android testing opt-in. Google Play needs 12 testers before the app can be
-// published; swap this for the store listing once it's live.
-const androidBeta = "https://play.google.com/apps/internaltest/4701662289299670512";
 
 // Operators, as named in the national timetable feed.
 const operators: { he: string; en: string }[] = [
@@ -77,10 +74,10 @@ export function LandingPage({ lang }: { lang: Lang }) {
             <p className="hero-sub">{t.lede}</p>
             <div className="hero-actions">
               <div className="hero-buttons">
-                <a className="btn btn-primary btn-lg" href={androidBeta}>
+                <AndroidBetaLink className="btn btn-primary btn-lg">
                   <IconBrandGooglePlay className="icon gh" />
                   <span>{t.betaCta}</span>
-                </a>
+                </AndroidBetaLink>
                 <a className="btn btn-ghost btn-lg" href={repo}>
                   <IconBrandGithub className="icon gh" />
                   <span>{t.ctaGithub}</span>
