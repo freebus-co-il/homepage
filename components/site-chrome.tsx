@@ -30,7 +30,7 @@ export function SiteHeader({ lang, slug }: { lang: Lang; slug?: Slug }) {
   );
 }
 
-const footerLinks: Slug[] = ["privacy", "terms", "support"];
+const footerLinks = ["privacy", "terms", "support"] as const;
 
 export function SiteFooter({ lang }: { lang: Lang }) {
   const t = dicts[lang];

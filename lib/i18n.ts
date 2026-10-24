@@ -5,7 +5,7 @@ export type Lang = (typeof langs)[number];
 export const paths: Record<Lang, string> = { he: "/", en: "/en/" };
 
 // The pages beside the landing page, each in both languages.
-export type Slug = "privacy" | "terms" | "support";
+export type Slug = "privacy" | "terms" | "support" | "android";
 
 // "/" + slug for Hebrew, "/en/" + slug for English; no slug is the landing page.
 export function pathFor(lang: Lang, slug?: Slug): string {
@@ -15,6 +15,13 @@ export function pathFor(lang: Lang, slug?: Slug): string {
 // Where privacy requests and support mail go. Shown on the legal pages and
 // the support page, and required by both app stores.
 export const contactEmail = "contactfreebus@gmail.com";
+
+// The Android app is in closed testing: joining this Google Group adds a
+// Google account to the testers list in Play Console.
+export const testersGroup = "freebus-testers@googlegroups.com";
+export const testersGroupUrl = "https://groups.google.com/g/freebus-testers";
+export const androidOptIn = "https://play.google.com/apps/testing/il.co.freebus";
+export const androidListing = "https://play.google.com/store/apps/details?id=il.co.freebus";
 
 const en = {
   brand: "FreeBus",
@@ -29,7 +36,32 @@ const en = {
   noAccount: "No account required. No ads.",
   appStoreBadge: "Download on the App Store",
   googlePlayBadge: "Get it on Google Play",
-  androidBeta: "The Android app is in open beta.",
+  ctaAndroid: "Join the Android beta",
+  android_title: "Get FreeBus on Android",
+  android_description: "How to join the FreeBus Android beta on Google Play: join the testers group, become a tester and install the app.",
+  android_eyebrow: "Android beta",
+  android_sub: "The Android app is in closed testing on Google Play. Three steps, about two minutes.",
+  android_1t: "Join the testers group",
+  android_1d: "Sign in with the same Google account you use for Google Play on your phone, then join the group.",
+  android_1cta: "Join the group",
+  android_2t: "Become a tester",
+  android_2d: "Open the testing page with the same account and tap the button to join the test.",
+  android_2cta: "Open the testing page",
+  android_3t: "Install the app",
+  android_3d: "Download FreeBus from Google Play like any other app.",
+  android_3qr: "Scan with your phone's camera to open Google Play.",
+  android_3copy: "Or copy the link and open it on your phone:",
+  android_copy: "Copy",
+  android_copied: "Copied",
+  android_qrAlt: "QR code linking to FreeBus on Google Play",
+  android_faqTitle: "Something not working?",
+  android_q1: "Google Play says the app isn't available",
+  android_a1: "Joining can take a few minutes to go through. Wait a little and open the testing page from step 2 again. If it still doesn't work, check that Google Play on your phone uses the same account you joined the group with.",
+  android_q2: "I joined with a different Google account",
+  android_a2: "Join the group again with the account Google Play uses on your phone, then repeat step 2.",
+  android_q3: "Do I need to do this again for updates?",
+  android_a3: "No. Once you're a tester, updates arrive through Google Play like any other app.",
+  android_keep: "Please keep the app installed for at least 14 days. Google requires this from testers before the app can be released to everyone.",
   alt_home: "Home screen with destination search, shortcuts to saved places and nearby stops with departure times",
   alt_plan: "Trip planner showing a route on the map, departure and arrival times, walking legs and a transfer warning",
   alt_station: "Stop departure board with arrival times, line filters and a destination filter",
@@ -109,7 +141,32 @@ const he: Dict = {
   noAccount: "בלי הרשמה. בלי פרסומות.",
   appStoreBadge: "להורדה מה-App Store",
   googlePlayBadge: "זמין ב-Google Play",
-  androidBeta: "האפליקציה לאנדרואיד בבטא פתוחה.",
+  ctaAndroid: "להצטרפות לבטא באנדרואיד",
+  android_title: "פריבוס לאנדרואיד",
+  android_description: "איך מצטרפים לבטא של פריבוס לאנדרואיד ב-Google Play: מצטרפים לקבוצת הבודקים, נרשמים לבדיקה ומתקינים את האפליקציה.",
+  android_eyebrow: "בטא לאנדרואיד",
+  android_sub: "האפליקציה לאנדרואיד נמצאת בבדיקה סגורה ב-Google Play. שלושה שלבים, בערך שתי דקות.",
+  android_1t: "מצטרפים לקבוצת הבודקים",
+  android_1d: "התחברו עם אותו חשבון גוגל שמחובר ל-Google Play בטלפון שלכם, והצטרפו לקבוצה.",
+  android_1cta: "להצטרפות לקבוצה",
+  android_2t: "נרשמים לבדיקה",
+  android_2d: "פתחו את דף הבדיקה עם אותו חשבון ולחצו על הכפתור להצטרפות לבדיקה.",
+  android_2cta: "לדף הבדיקה",
+  android_3t: "מתקינים את האפליקציה",
+  android_3d: "מורידים את פריבוס מ-Google Play, כמו כל אפליקציה אחרת.",
+  android_3qr: "סרקו עם המצלמה בטלפון כדי לפתוח את Google Play.",
+  android_3copy: "או העתיקו את הקישור ופתחו אותו בטלפון:",
+  android_copy: "העתקה",
+  android_copied: "הועתק",
+  android_qrAlt: "קוד QR שמוביל לפריבוס ב-Google Play",
+  android_faqTitle: "משהו לא עובד?",
+  android_q1: "ב-Google Play כתוב שהאפליקציה לא זמינה",
+  android_a1: "לפעמים לוקח כמה דקות עד שההצטרפות נקלטת. חכו קצת ופתחו שוב את דף הבדיקה משלב 2. אם זה עדיין לא עובד, בדקו ש-Google Play בטלפון מחובר לאותו חשבון שאיתו הצטרפתם לקבוצה.",
+  android_q2: "הצטרפתי עם חשבון גוגל אחר",
+  android_a2: "הצטרפו שוב לקבוצה עם החשבון שמחובר ל-Google Play בטלפון, ואז חזרו על שלב 2.",
+  android_q3: "צריך לעשות את זה שוב בכל עדכון?",
+  android_a3: "לא. אחרי שנרשמתם לבדיקה, העדכונים מגיעים דרך Google Play כמו בכל אפליקציה אחרת.",
+  android_keep: "נשמח אם תשאירו את האפליקציה מותקנת לפחות 14 יום. גוגל דורשת את זה מהבודקים לפני שאפשר לפרסם את האפליקציה לכולם.",
   alt_home: "מסך הבית עם חיפוש יעד, קיצורי דרך למקומות שמורים ותחנות קרובות עם זמני יציאה",
   alt_plan: "תכנון נסיעה עם מסלול על המפה, זמני יציאה והגעה, קטעי הליכה ואזהרה שאולי לא תספיקו לקו הבא",
   alt_station: "לוח יציאות מתחנה עם זמני הגעה וסינון לפי קו או יעד",

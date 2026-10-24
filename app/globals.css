@@ -113,12 +113,14 @@ svg { display: block; }
 .hero-sub { margin: 24px auto 0; max-width: 640px; font-size: 18px; color: var(--fg-2); }
 .hero-actions { margin-top: 36px; display: flex; flex-direction: column; align-items: center; gap: 16px; }
 .hero-note { font-size: 13px; color: var(--fg-3); }
-.hero-buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
 /* Store badges keep a quarter of their height as clear space (12px at 48px). */
 .store-badges { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
 .store-badge { display: block; border-radius: 8px; }
 .store-badge img { display: block; height: 48px; width: auto; }
 .store-badge:focus-visible { outline: 2px solid var(--fg); outline-offset: 4px; }
+/* Sits beside the App Store badge, so it takes the badge's height and corners. */
+.android-cta { height: 48px; padding: 0 18px; border-color: var(--line-2); color: var(--fg); font-size: 15px; }
+.android-cta .icon { font-size: 20px; }
 
 /* Three phones fanned out under the hero, shown whole. The box is as tall as
    the middle phone (300px wide → 624px) plus a little for the tilted sides. */
@@ -245,6 +247,32 @@ svg { display: block; }
 .faq details > summary + * { margin-top: 0; }
 .faq details > * + :not(summary) { margin-top: 12px; }
 
+/* ---------- Android beta: three steps to join ---------- */
+.android-head h1 { margin-top: 14px; font-size: clamp(36px, 5vw, 52px); font-weight: 500; letter-spacing: -0.03em; line-height: 1.08; }
+.android-steps { list-style: none; }
+.android-mono { font: 13px var(--mono); color: var(--fg-3); overflow-wrap: anywhere; }
+/* Each step's action sits at the foot of its cell, so the three line up. */
+.android-action { margin-top: auto; align-self: flex-start; }
+.on-phone, .on-desktop { display: flex; flex-direction: column; gap: 18px; flex: 1; }
+.on-desktop { display: none; }
+@media (hover: hover) and (pointer: fine) {
+  .on-phone { display: none; }
+  .on-desktop { display: flex; }
+}
+/* Dark on white whatever the page colour, so any camera reads it. */
+.qr { width: 168px; padding: 12px; border-radius: 10px; background: #fff; }
+.qr svg { width: 100%; height: auto; }
+.android-copy-label { font-size: 14px; }
+.cell .android-copy-label { margin-bottom: -8px; }
+.copy-link { display: flex; align-items: center; gap: 8px; padding: 4px 4px 4px 12px; border: 1px solid var(--line); border-radius: 8px; }
+.copy-link-url { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font: 12px var(--mono); color: var(--fg-2); }
+.copy-link-url:hover { color: var(--fg); }
+.copy-link .btn { background: transparent; flex: none; }
+.android-keep { margin-top: 24px; padding: 20px 24px; border: 1px solid var(--line); border-radius: 12px; background: var(--tile); color: var(--fg-2); }
+.android-faq { margin-top: 72px; max-width: 760px; }
+.android-faq h2 { margin-bottom: 16px; font-size: 22px; font-weight: 500; letter-spacing: -0.015em; }
+.android-faq .faq p { color: var(--fg-2); }
+
 /* ---------- iPhone, Space Black ----------
    Sized in container units so the proportions hold at any width: 1.5 metal
    band + 2.6 bezel per side, and corner radii stepping down to the screen's
@@ -293,8 +321,6 @@ svg { display: block; }
   .cell + .cell { border-inline-start: 0; border-top: 1px solid var(--line); }
 }
 @media (max-width: 640px) {
-  .hero-buttons { flex-direction: column; width: 100%; }
-  .hero-buttons .btn { width: 100%; }
   :root { --gutter: 16px; }
   .hero { padding-top: 56px; }
   .hero-sub, .section-sub, .cta-sub { font-size: 16px; }

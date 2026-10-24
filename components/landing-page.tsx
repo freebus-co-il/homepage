@@ -1,11 +1,10 @@
 import { HeroPhones } from "@/components/hero-phones";
 import { IPhone } from "@/components/iphone";
 import { SiteFooter, SiteHeader, repo } from "@/components/site-chrome";
-import { IconBrandGithub, IconCheck } from "@tabler/icons-react";
+import { IconBrandAndroid, IconBrandGithub, IconCheck } from "@tabler/icons-react";
 import Image from "next/image";
-import { dicts, type Dict, type Lang } from "@/lib/i18n";
+import { dicts, pathFor, type Dict, type Lang } from "@/lib/i18n";
 
-const androidBeta = "https://play.google.com/apps/testing/il.co.freebus";
 const iosApp = "https://apps.apple.com/il/app/freebus/id6818839188";
 
 // Intrinsic sizes of Apple's localized badge artwork.
@@ -77,20 +76,16 @@ export function LandingPage({ lang }: { lang: Lang }) {
             </h1>
             <p className="hero-sub">{t.lede}</p>
             <div className="hero-actions">
-              {/* Official store badges, unmodified: App Store first, both the same height. */}
+              {/* The official App Store badge, unmodified. Android is in closed
+                  testing, so its button leads to the steps for joining instead
+                  of a Google Play badge. Both are the same height. */}
               <div className="store-badges">
                 <a className="store-badge" href={iosApp}>
                   <Image src={`/assets/badges/app-store-${lang}.svg`} alt={t.appStoreBadge} {...appStoreSize[lang]} />
                 </a>
-                <a className="store-badge" href={androidBeta}>
-                  <Image src={`/assets/badges/google-play-${lang}.png`} alt={t.googlePlayBadge} width={564} height={168} />
-                </a>
-              </div>
-              <p className="hero-note">{t.androidBeta}</p>
-              <div className="hero-buttons">
-                <a className="btn btn-ghost btn-lg" href={repo}>
-                  <IconBrandGithub className="icon gh" />
-                  <span>{t.ctaGithub}</span>
+                <a className="btn btn-ghost android-cta" href={pathFor(lang, "android")}>
+                  <IconBrandAndroid className="icon" aria-hidden="true" />
+                  <span>{t.ctaAndroid}</span>
                 </a>
               </div>
               <p className="hero-note">{t.noAccount}</p>
