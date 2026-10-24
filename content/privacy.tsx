@@ -10,7 +10,7 @@ const mail = <a href={`mailto:${contactEmail}`}>{contactEmail}</a>;
 const en: Doc = {
   title: "Privacy Policy",
   description: "What data the FreeBus app and freebus.co.il collect, how it is used, and the choices you have.",
-  updated: "2 October 2026",
+  updated: "24 October 2026",
   body: (
     <>
       <p>
@@ -23,7 +23,10 @@ const en: Doc = {
         <strong>The short version</strong>
         <ul>
           <li>Using the app requires no account, name, email address or phone number. If you contact support, we receive the details you send.</li>
-          <li>The app contains no advertising, analytics or tracking SDKs, and we don&apos;t sell or share data for advertising.</li>
+          <li>
+            The app contains no advertising or tracking SDKs, and we don&apos;t sell or share data for advertising. It counts how
+            often it is used and reports programming errors, with no identifier and nothing about where you are or where you are going.
+          </li>
           <li>Saved places, recent searches and settings are stored only on your device.</li>
           <li>
             To plan trips, the app sends searches and locations to our server. Requests do not include an account ID, but IP addresses and locations may be personal information.
@@ -124,6 +127,24 @@ const en: Doc = {
           installation ID, the platform and the app version. <a href="https://expo.dev/privacy">Expo Privacy Policy</a>.
         </li>
         <li>
+          <strong>Usage counts.</strong> The app counts a few events with Aptabase (Technov Solutions SRL), which stores
+          them in the European Union: opening the app, planning a trip, and starting, finishing or ending a journey. Each
+          count carries only the app and operating system versions and a temporary session ID that is kept in memory and
+          changes after an hour of inactivity. It carries no device or user identifier and nothing about places, stops,
+          lines or searches. Aptabase uses your IP address to estimate your country, and to count daily users with a key
+          it discards every 24 hours; it doesn&apos;t store the address.{" "}
+          <a href="https://aptabase.com/legal/privacy">Aptabase Privacy Policy</a>.
+        </li>
+        <li>
+          <strong>Crash reports.</strong> When the app hits a programming error, it sends a report to Sentry (Functional
+          Software, Inc.): the type of error and its message, where in the app&apos;s code it happened, the app and
+          operating system versions and the phone model. Before a report leaves your device, the app removes anything that
+          could describe you or a trip: numbers, text in Hebrew or any other non-Latin script, quoted text other than names
+          from the app&apos;s code, and everything in a web address after its path. Reports carry no installation or user
+          identifier, and Sentry is told not to store your IP address. Crashes in the app&apos;s native code are not sent
+          to Sentry. <a href="https://sentry.io/privacy/">Sentry Privacy Policy</a>.
+        </li>
+        <li>
           <strong>Hosting.</strong> Our server runs on Hetzner Online GmbH in the European Union, and traffic to it may
           pass through Cloudflare, Inc. for security and performance.
         </li>
@@ -205,7 +226,7 @@ const en: Doc = {
 const he: Doc = {
   title: "מדיניות פרטיות",
   description: "אילו נתונים אוספים האפליקציה פריבוס והאתר freebus.co.il, איך משתמשים בהם ומה האפשרויות שלכם.",
-  updated: "2 באוקטובר 2026",
+  updated: "24 באוקטובר 2026",
   body: (
     <>
       <p>
@@ -218,7 +239,10 @@ const he: Doc = {
         <strong>בקצרה</strong>
         <ul>
           <li>כדי להשתמש באפליקציה לא צריך להירשם או למסור שם, אימייל או מספר טלפון. אם פונים לתמיכה, אנחנו מקבלים את הפרטים ששולחים לנו.</li>
-          <li>באפליקציה אין פרסומות, כלי אנליטיקה או כלי מעקב, ואנחנו לא מוכרים או משתפים מידע לצורכי פרסום.</li>
+          <li>
+            באפליקציה אין פרסומות או כלי מעקב, ואנחנו לא מוכרים או משתפים מידע לצורכי פרסום. היא סופרת כמה משתמשים בה ומדווחת על
+            שגיאות בקוד שלה, בלי מזהה ובלי שום פרט על המקום שבו אתם נמצאים או שאליו אתם נוסעים.
+          </li>
           <li>מקומות שמורים, חיפושים אחרונים והגדרות נשמרים רק במכשיר שלכם.</li>
           <li>כדי לתכנן נסיעות, האפליקציה שולחת חיפושים ומיקומים לשרת שלנו, בלי מזהה חשבון. כתובת IP ונתוני מיקום עדיין עשויים להיות מידע אישי.</li>
           <li>מיקום ברקע משמש רק במהלך נסיעה שהתחלתם, כדי להתריע לפני התחנה שלכם.</li>
@@ -312,6 +336,22 @@ const he: Doc = {
         <li>
           <strong>עדכוני אפליקציה.</strong> האפליקציה בודקת אם יש עדכונים מול Expo (650 Industries, Inc.), ושולחת מזהה התקנה
           אקראי, את סוג הפלטפורמה ואת גרסת האפליקציה. <a href="https://expo.dev/privacy">מדיניות הפרטיות של Expo</a>.
+        </li>
+        <li>
+          <strong>ספירת שימוש.</strong> האפליקציה סופרת כמה אירועים בעזרת Aptabase (Technov Solutions SRL), שמאחסנת אותם
+          באיחוד האירופי: פתיחת האפליקציה, תכנון נסיעה, והתחלה, סיום או הפסקה של מעקב אחר נסיעה. כל ספירה כוללת רק את גרסת
+          האפליקציה ואת גרסת מערכת ההפעלה, ומזהה שימוש זמני שנשמר בזיכרון בלבד ומתחלף אחרי שעה בלי שימוש. היא לא כוללת מזהה
+          מכשיר או מזהה משתמש, ושום פרט על מקומות, תחנות, קווים או חיפושים. Aptabase משתמשת בכתובת ה-IP כדי להעריך באיזו
+          מדינה אתם, וכדי לספור משתמשים יומיים בעזרת מפתח שנמחק כל 24 שעות; היא לא שומרת את הכתובת.{" "}
+          <a href="https://aptabase.com/legal/privacy">מדיניות הפרטיות של Aptabase</a>.
+        </li>
+        <li>
+          <strong>דוחות שגיאה.</strong> כשמתרחשת שגיאה בקוד האפליקציה, היא שולחת דוח ל-Sentry (Functional Software, Inc.):
+          סוג השגיאה וההודעה שלה, המקום בקוד שבו היא קרתה, גרסת האפליקציה, גרסת מערכת ההפעלה ודגם הטלפון. לפני שהדוח יוצא
+          מהמכשיר, האפליקציה מוחקת ממנו כל מה שעשוי לתאר אתכם או נסיעה: מספרים, טקסט בעברית או בכל כתב שאינו לטיני, טקסט
+          במירכאות (חוץ משמות מתוך הקוד של האפליקציה) וכל מה שבא בכתובת אינטרנט אחרי הנתיב שלה. הדוחות לא כוללים מזהה התקנה
+          או מזהה משתמש, ו-Sentry מקבלת הוראה לא לשמור את כתובת ה-IP שלכם. קריסות בקוד ה-native של האפליקציה לא נשלחות
+          ל-Sentry. <a href="https://sentry.io/privacy/">מדיניות הפרטיות של Sentry</a>.
         </li>
         <li>
           <strong>אחסון.</strong> השרת שלנו פועל אצל Hetzner Online GmbH באיחוד האירופי, והתעבורה אליו עשויה לעבור דרך
